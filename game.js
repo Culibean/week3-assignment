@@ -16,8 +16,14 @@ async function getUpgradeData() {
 const upgradeContainer = document.getElementById("shop-container");
 
 function createUpgradeContainer(shop) {
-  const upgrade = document.createElement("table");
-  upgradeContainer.appendChild(upgrade);
+  const list = document.createElement("ul");
+  //forEach loop to create all elements
+  shop.forEach((upgrade) => {
+    const item = document.createElement("li");
+    item.textContent = `${upgrade.name} - Cost: ${upgrade.cost}, CPS: ${upgrade.increase}`;
+    list.appendChild(item);
+  });
+  upgradeContainer.appendChild(list);
 }
 
 async function renderUpgrade() {
