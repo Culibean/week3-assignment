@@ -11,16 +11,34 @@
     <title>A Christmas Cookie Clicker Game</title>
   </head>
   <body>
-    <h1>The big Christmas Cookie Hunt</h1>
-    <!-- a clickable element, for example, an img -->
-    <img
-      id="clicker-image"
-      src="./images/funny-christmas-cookie-vector-9584658.svg"
-      alt="an illustration of a Christmas Gingerbread Man"
-    />
-    <p>Total cookie count: 0</p>
-    <p>Cookies per second (cps): 0</p>
-    <!-- container for the shop upgrades -->
-    <section id="shop-container"></section>
+    <header>
+      <h1>The big Christmas Cookie Bake Off</h1>
+    </header>
+    <main>
+      <div id="left-side">
+        <div id="counting-container">
+          <p>Total cookie count: 0</p>
+          <p>Cookies per second (cps): 0</p>
+        </div>
+
+        <!-- The cookie should sit on the left of the game -->
+        <div id="cookie-container">
+          <img
+            id="clicker-image"
+            src="./images/funny-christmas-cookie-vector-9584658_1280.png"
+            alt="an illustration of a Christmas Gingerbread Man"
+          />
+        </div>
+      </div>
+
+      <!-- the container for the shop upgrades should be on the right -->
+      <div id="shop-container">
+        <p>Upgrade your bakery!</p>
+        <!-- Shop items go in here -->
+      </div>
+    </main>
+    <footer>
+      <p>created by Uli</p>
+    </footer>
   </body>
 </html>
