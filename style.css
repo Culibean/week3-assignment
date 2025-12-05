@@ -13,7 +13,7 @@ body {
 header,
 footer {
   text-align: center;
-  background: #efd148;
+  background: #dc2b14;
   padding: 1rem;
   width: 100vw;
 }
@@ -58,6 +58,7 @@ main {
   max-width: 250px;
   height: auto;
   margin-top: 25px;
+  cursor: pointer;
 }
 
 #clicker-image:hover {
@@ -103,7 +104,7 @@ main {
   justify-self: center;
   align-self: start;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #dc2b14;
   font-weight: bolder;
   border: solid #efd148 2px;

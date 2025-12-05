@@ -50,9 +50,9 @@ function startup() {
 
 startup();
 
-function createUpgradeContainer(shop) {
+function createUpgradeContainer(upgrades) {
   //forEach loop to create all elements
-  shop.forEach((upgrade) => {
+  upgrades.forEach((upgrade) => {
     const shopElement = document.createElement("div");
     shopElement.className = "upgradeShop";
     const text = document.createElement("p");
