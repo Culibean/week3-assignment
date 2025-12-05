@@ -159,7 +159,6 @@ audio {
   #shop-container {
     grid-column: 1 /2;
     grid-row: auto;
-
     padding: 100px 0px;
   }
 }
