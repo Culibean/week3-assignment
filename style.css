@@ -76,6 +76,8 @@ main {
 }
 
 .upgradeShop {
+  display: flex;
+  flex-direction: row;
   background: #c8eeb1;
   border: solid #efd148 2px;
   padding: 0.3rem;
@@ -86,6 +88,18 @@ main {
   grid-column: 2 /3;
   grid-row: 1 / 2;
   text-align: center;
+}
+
+.buyButton {
+  margin-left: auto;
+  border: #efd148 solid 2px;
+  padding: 0.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.buyButton:hover {
+  background-color: #efd148;
 }
 
 @media (max-width: 800px) {

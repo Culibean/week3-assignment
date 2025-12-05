@@ -1,7 +1,7 @@
 console.log("Hello Cookie");
 
 let totalCookieCount = 0;
-let cps = 1;
+let cps = 0;
 
 async function getUpgradeData() {
   const response = await fetch(
@@ -17,6 +17,28 @@ const upgradeContainer = document.getElementById("shop-container");
 
 //started styling and realised that list is no longer practical. changing to <div> and adding buttons in the same functions
 
+// TODO: create a way that pulls from local storage when page reloads - in startup function
+function startup() {
+  const savedCookieCount = localStorage.getItem("totalCookieCount");
+  const savedCps = localStorage.getItem("cps");
+
+  if (savedCookieCount != null) {
+    totalCookieCount = JSON.parse(savedCookieCount);
+  }
+  if (savedCps != null) {
+    cps = JSON.parse(savedCps);
+  }
+
+  document.getElementById(
+    "cookie-count"
+  ).textContent = `Total cookie count: ${totalCookieCount}`;
+  document.getElementById(
+    "cps-count"
+  ).textContent = `Cookies per second (cps): ${cps}`;
+}
+
+startup();
+
 function createUpgradeContainer(shop) {
   //forEach loop to create all elements
   shop.forEach((upgrade) => {
@@ -26,14 +48,30 @@ function createUpgradeContainer(shop) {
     text.textContent = `${upgrade.name} - Cost: ${upgrade.cost}, CPS: ${upgrade.increase}`;
     const button = document.createElement("button"); //including function to deduct cookies when upgrade is bought
     button.textContent = "Buy Now";
+    button.className = "buyButton";
     button.addEventListener("click", function () {
       if (totalCookieCount >= upgrade.cost) {
         totalCookieCount -= upgrade.cost;
-        cps += upgrade.cps;
+        cps += upgrade.increase;
         console.log(`Bought ${upgrade.name}!`);
+        document.getElementById(
+          "cps-count"
+        ).textContent = `Cookies per second (cps): ${cps}`;
+        document.getElementById(
+          "cookie-count"
+        ).textContent = `Total cookie count: ${totalCookieCount}`;
       } else {
         alert("You need to bake more cookies!");
       }
+      const stringifiedtotalCookieCount = JSON.stringify(totalCookieCount);
+      localStorage.setItem("totalCookieCount", stringifiedtotalCookieCount);
+      localStorage.getItem(totalCookieCount);
+      JSON.parse(stringifiedtotalCookieCount);
+
+      const stringifiedcps = JSON.stringify(cps);
+      localStorage.setItem("cps", stringifiedcps);
+      localStorage.getItem(cps);
+      JSON.parse(stringifiedcps);
     });
     shopElement.appendChild(text);
     shopElement.appendChild(button);
@@ -65,4 +103,27 @@ setInterval(function () {
   document.getElementById(
     "cps-count"
   ).textContent = `Cookies per second (cps): ${cps}`;
+  const stringifiedtotalCookieCount = JSON.stringify(totalCookieCount);
+  localStorage.setItem("totalCookieCount", stringifiedtotalCookieCount);
+  localStorage.getItem(totalCookieCount);
+  JSON.parse(stringifiedtotalCookieCount);
+
+  const stringifiedcps = JSON.stringify(cps);
+  localStorage.setItem("cps", stringifiedcps);
+  localStorage.getItem(cps);
+  JSON.parse(stringifiedcps);
 }, 1000);
+
+const saveButton = document.getElementById("save-button");
+
+saveButton.addEventListener("click", function () {
+  const stringifiedtotalCookieCount = JSON.stringify(totalCookieCount);
+  localStorage.setItem("totalCookieCount", stringifiedtotalCookieCount);
+  localStorage.getItem(totalCookieCount);
+  JSON.parse(stringifiedtotalCookieCount);
+
+  const stringifiedcps = JSON.stringify(cps);
+  localStorage.setItem("cps", stringifiedcps);
+  localStorage.getItem(cps);
+  JSON.parse(stringifiedcps);
+});
