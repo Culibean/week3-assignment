@@ -10,6 +10,10 @@ backgroundAudio.volume = 0.05;
 
 const clickSound = new Audio("sounds/computer-mouse-click-351398.mp3");
 
+//TODO: Add purchase sound every time the user buys something
+const buySound = new Audio("sounds/purchase-success-384963.mp3");
+buySound.volume = 0.09;
+
 async function getUpgradeData() {
   const response = await fetch(
     "https://cookie-upgrade-api.vercel.app/api/upgrades"
@@ -68,9 +72,12 @@ function createUpgradeContainer(shop) {
         document.getElementById(
           "cookie-count"
         ).textContent = `Total cookie count: ${totalCookieCount}`;
+        buySound.currentTime = 0;
+        buySound.play();
       } else {
         alert("You need to bake more cookies!");
       }
+
       const stringifiedtotalCookieCount = JSON.stringify(totalCookieCount);
       localStorage.setItem("totalCookieCount", stringifiedtotalCookieCount);
       localStorage.getItem(totalCookieCount);
