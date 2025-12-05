@@ -3,6 +3,13 @@ console.log("Hello Cookie");
 let totalCookieCount = 0;
 let cps = 0;
 
+const backgroundAudio = document.getElementById("xmas");
+backgroundAudio.volume = 0.05;
+
+//TODO: Add click sound every time the users clicks on the cookie
+
+const clickSound = new Audio("sounds/computer-mouse-click-351398.mp3");
+
 async function getUpgradeData() {
   const response = await fetch(
     "https://cookie-upgrade-api.vercel.app/api/upgrades"
@@ -46,6 +53,7 @@ function createUpgradeContainer(shop) {
     shopElement.className = "upgradeShop";
     const text = document.createElement("p");
     text.textContent = `${upgrade.name} - Cost: ${upgrade.cost}, CPS: ${upgrade.increase}`;
+    //function for buying upgrades button
     const button = document.createElement("button"); //including function to deduct cookies when upgrade is bought
     button.textContent = "Buy Now";
     button.className = "buyButton";
@@ -93,6 +101,8 @@ cookieButton.addEventListener("click", function () {
   document.getElementById(
     "cookie-count"
   ).textContent = `Total cookie count: ${totalCookieCount}`;
+  clickSound.currentTime = 0;
+  clickSound.play();
 });
 
 setInterval(function () {
@@ -114,16 +124,16 @@ setInterval(function () {
   JSON.parse(stringifiedcps);
 }, 1000);
 
-const saveButton = document.getElementById("save-button");
+const resetButton = document.getElementById("reset-button");
 
-saveButton.addEventListener("click", function () {
-  const stringifiedtotalCookieCount = JSON.stringify(totalCookieCount);
-  localStorage.setItem("totalCookieCount", stringifiedtotalCookieCount);
-  localStorage.getItem(totalCookieCount);
-  JSON.parse(stringifiedtotalCookieCount);
-
-  const stringifiedcps = JSON.stringify(cps);
-  localStorage.setItem("cps", stringifiedcps);
-  localStorage.getItem(cps);
-  JSON.parse(stringifiedcps);
+resetButton.addEventListener("click", function () {
+  localStorage.clear();
+  totalCookieCount = 0;
+  cps = 0;
+  document.getElementById(
+    "cookie-count"
+  ).textContent = `Total cookie count: ${totalCookieCount}`;
+  document.getElementById(
+    "cps-count"
+  ).textContent = `Cookies per second (cps): ${cps}`;
 });
