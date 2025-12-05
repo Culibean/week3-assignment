@@ -46,8 +46,9 @@ main {
 }
 
 #clicker-image {
-  max-width: 200px;
+  max-width: 250px;
   height: auto;
+  margin-top: 25px;
 }
 
 #clicker-image:hover {
@@ -64,6 +65,7 @@ main {
   grid-row: 1 /3;
   /* background: #3af090; */
   padding: 100px;
+  width: 100%;
 }
 
 #left-side {
@@ -71,6 +73,19 @@ main {
   flex-direction: column;
   align-items: start;
   margin-left: 60px;
+}
+
+.upgradeShop {
+  background: #c8eeb1;
+  border: solid #efd148 2px;
+  padding: 0.3rem;
+  color: #64a5db;
+}
+
+#upgrade-title {
+  grid-column: 2 /3;
+  grid-row: 1 / 2;
+  text-align: center;
 }
 
 @media (max-width: 800px) {
